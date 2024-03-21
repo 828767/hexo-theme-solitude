@@ -1,13 +1,14 @@
-div#st-footer-bar
-    div.footer-logo
-        if theme.site.name.class === 'i_class'
-            i.solitude(class=theme.site.name.custom)
-        else if theme.site.name.class === 'img'
-            img.solitude.nolazyload(src=url_for(theme.site.name.custom))
-        else if theme.site.name.class === 'text'
-            span.solitude= theme.site.name.custom
-    div.footer-bar-description= __('footer.description').replace(/\$\{title}/, config.title + " - " + config.subtitle)
-    a.footer-bar-link(href="/")= __('footer.learnmore')
+//- div#st-footer-bar
+//-     div.footer-logo
+//-         if theme.site.name.class === 'i_class'
+//-             i.solitude(class=theme.site.name.custom)
+//-         else if theme.site.name.class === 'img'
+//-             img.solitude.nolazyload(src=url_for(theme.site.name.custom))
+//-         else if theme.site.name.class === 'text'
+//-             span.solitude= theme.site.name.custom
+    //- div.footer-bar-description= __('footer.description').replace(/\$\{title}/, config.title + " - " + config.subtitle)
+    //- div.footer-bar-description= __('footer.description').replace(/\$\{title}/, config.title)
+    //- a.footer-bar-link(href="/")= __('footer.learnmore')
 div#footer_deal
     - var leftInfo = theme.footer && theme.footer.information && theme.footer.information.left || {}
     - var rightInfo = theme.footer && theme.footer.information && theme.footer.information.right || {}
