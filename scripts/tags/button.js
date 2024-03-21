@@ -1,3 +1,10 @@
+/**
+ * Button
+ * {% btn url text icon option %}
+ * option: color outline center block larger
+ * color : default/blue/pink/red/purple/orange/green
+ */
+
 "use strict";
 
 const urlFor = require("hexo-util").url_for.bind(hexo);
@@ -14,8 +21,8 @@ function btn(args) {
     icon = icon.trim();
     option = option.trim();
 
-    return `<button class="btn-sco ${option}" onclick="location.href = '${urlFor(url)}'" 
-  title="${text}">${icon.length ? `<i class="solitude ${icon}"></i>` : ""}${text.length ? `<span>${text}</span>` : ""}</button>`;
+    return `<a class="btn-sco ${option}" href="${urlFor(url)}" 
+  title="${text}">${icon.length ? `<i class="solitude ${icon}"></i>` : ""}${text.length ? `<span>${text}</span>` : ""}</a>`;
 }
 
 hexo.extend.tag.register("btn", btn, { ends: false });
