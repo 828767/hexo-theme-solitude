@@ -51,7 +51,7 @@ aplayer_js:
   version: 1.10.1
 meting_js:
   name: meting
-  file: Meting.min.js
+  file: dist/Meting.min.js
   version: 2.0.1
 pace_js:
   name: pace-js
@@ -74,10 +74,6 @@ busuanzi_js:
   name: busuanzi
   file: bsz.pure.mini.js
   version: 2.3.0
-snackbar_css:
-  name: node-snackbar
-  file: dist/snackbar.min.css
-  version: 0.1.16
 snackbar:
   name: node-snackbar
   file: dist/snackbar.min.js
