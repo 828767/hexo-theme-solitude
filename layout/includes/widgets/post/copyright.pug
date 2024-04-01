@@ -1,6 +1,6 @@
 .post-copyright
     .post-copyright__author_group
-        a.post-copyright__author_img(href="/about/")
+        a.post-copyright__author_img(href=url_for("/about/"))
             img.post-copyright__author_img_front(src=theme.site.icon)
         .post-copyright__author_name= config.title
         .post-copyright__author_desc= config.subtitle
@@ -11,17 +11,17 @@
                 include ./award
             if theme.post.rss
                 .reward-link.mode
-                    a.reward-link-button(href=url_for(theme.post.rss), title="订阅")
+                    a.reward-link-button(href=url_for(theme.post.rss))
                         i.solitude.st-plant-fill
-                        | 订阅
+                        = _p('footer.rss')
     if theme.post.default.copyright.enable || page.copyright
         .post-copyright__notice
             span.post-copyright-info
                 if page.reprint
-                    | 本文是转载或翻译文章，版权归原作者所有。转载本文请联系原作者。
+                    = _p('post.copyright.reprint')
                 else
-                    | 本文是原创文章，采用
+                    = _p('post.copyright.original')
                     a(href=url_for(theme.post.default.copyright.licenurl))
                         | #{theme.post.default.copyright.license}
-                    | 协议，完整转载请注明来自
-                    a(href="/") #{config.title}
+                    = _p('post.copyright.original_end')
+                    a(href=url_for("/")) #{config.title}

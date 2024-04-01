@@ -3,7 +3,7 @@ hexo.extend.filter.register('before_generate', () => {
         site: {
             name: {
                 class: 'text', custom: 'Solitude'
-            }, siteIcon: '/img/logo.png', icon: 'icon'
+            }, siteIcon: '/img/pwa/favicon.ico', icon: 'icon'
         }, nav: {
             group: null, menu: null, right: {
                 random: false, console: false, custom: [],
@@ -129,7 +129,8 @@ hexo.extend.filter.register('before_generate', () => {
             randompostjs: 'https://cdn.cbd.int/st-source/js/moment/random_post.min.js'
         }, keyboard: {
             enable: false, list: []
-        }, lazyload: {
+        }
+        ,lazyload: {
             enable: false, field: 'site', placeholder: '/img/loading.gif', errorimg: '/img/error_load.png'
         }, loading: {
             fullpage: false, pace: true,
@@ -137,7 +138,7 @@ hexo.extend.filter.register('before_generate', () => {
             enable: true, limit: 200, copy: true, expand: true, theme: 'default', color: 'default',
         }, lightbox: false, fancybox: false, mediumZoom: false, mermaid: false, translate: {
             enable: false, defaultEncoding: 2, translateDelay: 0,
-        }, opengraph: {
+        }, OpenGraph: {
             enable: false, options: null
         }, wordcount: false, busuanzi: false, search: {
             enable: false, type: 'local', tags: [], algolia: null, local: {
@@ -145,7 +146,15 @@ hexo.extend.filter.register('before_generate', () => {
             }
         }, rightside: {
             enable: false
-        }, post_ai: {
+        },
+        copy: {
+            enable: true,
+            copyright: {
+                enable: false,
+                limit: 50
+            }
+        }
+        , post_ai: {
             enable: false,
             modelName: 'GPT 3',
             key: 'your key',
@@ -156,7 +165,7 @@ hexo.extend.filter.register('before_generate', () => {
             enable: false, per_page: false, copytex: false,
         }, comment: {
             enable: false,
-            type: 'twikoo',
+            type: '',
             commentBarrage: false,
             newComment: false,
             randomInfoStart: [`baby's`, `little`, `my`,],
@@ -172,8 +181,8 @@ hexo.extend.filter.register('before_generate', () => {
             font: {
                 'font-size': '16px',
                 'code-font-size': '16px',
-                'font-family': '"PingFang SC","Hiragino Sans GB","Microsoft YaHei"',
-                'code-font-family': '"monospace", "monospace"',
+                'font-family': 'PingFang SC, Hiragino Sans GB,Microsoft YaHei',
+                'code-font-family': 'monospace, monospace',
             },
             extends: {
                 head: [], body: [],

@@ -72,21 +72,6 @@ div#post-comment
       a:hover
         color var(--efu-main)
 
-  .comment-tips
-    background-color rgba(103, 194, 58, 0.13)
-    border var(--style-border-always)
-    border-color var(--efu-green)
-    color var(--efu-green)
-    border-radius 8px
-    padding 8px 12px
-    margin-top 0.5rem
-    display none
-    width 100%
-
-    &.show
-      display flex
-      font-weight 700
-
   blockquote
     background var(--efu-secondbg)
     border var(--style-border)
@@ -104,10 +89,18 @@ div#post-comment
     flex-wrap wrap
     position relative
 
-.comment-randomInfo
-  margin-left auto
-  font-size 13px
+#owo-big
+  position fixed
+  align-items center
+  background-color var(--heo-card-bg)
+  border var(--style-border-always)
+  border-radius 10px
+  z-index 9999
+  display none
+  transform translate(0, -105%)
+  overflow hidden
+  animation owoIn .3s cubic-bezier(.42,0,.3,1.11)
+  padding 1rem
 
-  &:hover
-    a
-      color var(--efu-theme)
+@import 'twikoo.styl' when hexo-config('comment.type') == 'twikoo'
+@import 'valine.styl' when hexo-config('comment.type') == 'valine'
