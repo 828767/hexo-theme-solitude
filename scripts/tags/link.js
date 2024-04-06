@@ -21,21 +21,25 @@ function link(args) {
     InsideStation = true;
   }
 
-  // let urlNoProtocol = args[2].replace(/^https?\:\/\//i, "");
-  // let imgUrl = "https://api.iowen.cn/favicon/" + urlNoProtocol + ".png";
+  if ((imgUrl == "") && (InsideStation == false)) {
+    let domain = new URL(link).hostname
+    if (domain) {
+      imgUrl_online = "https://api.iowen.cn/favicon/" + domain + ".png";
+    }
+  }
 
   return `<a class="tag-link" target="_blank" href="${urlFor(link)}">
     <div class="tag-link-tips">${
-      InsideStation ? "站内地址" : "引用站外地址"
+      InsideStation ? "站内链接" : "引用站外链接"
     }</div>
     <div class="tag-link-bottom">
         <div class="tag-link-left" style="${
-          imgUrl
-            ? `background-image: url(${InsideStation ? favicon : imgUrl})`
-            : ""
+          InsideStation
+            ? `background-image: url(${imgUrl ? imgUrl : favicon})`
+            : `background-image: url(${imgUrl ? imgUrl : imgUrl_online})`
         }">
             <i class="solitude st-link-m-line" style="${
-              imgUrl ? "display: none" : ""
+              `(imgUrl) || (imgUrl_online)` ? "display: none" : ""
             }"></i>
         </div>
         <div class="tag-link-right">
