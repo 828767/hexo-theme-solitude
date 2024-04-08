@@ -22,7 +22,7 @@ function link(args) {
   }
 
   if ((imgUrl == "") && (InsideStation == false)) {
-    let domain = new URL(link).hostname
+    let domain = new URL(link).hostname;
     if (domain) {
       imgUrl_online = "https://api.iowen.cn/favicon/" + domain + ".png";
     }
