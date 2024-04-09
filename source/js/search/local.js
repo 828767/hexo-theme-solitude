@@ -1,5 +1,5 @@
 window.onload = () => {
-    let idx, store = [];
+    let store = [];
     const $searchMask = document.getElementById("search-mask");
     const $searchDialog = document.querySelector("#local-search .search-dialog");
     window.openSearch = () => {
@@ -28,6 +28,15 @@ window.onload = () => {
         window.removeEventListener("resize", fixSafariHeight);
     };
 
+    const addEventTagList = () => {
+        const list = document.querySelectorAll("#local-search .tag-list");
+        if(list.length > 0){
+            list.forEach(el => el.addEventListener("click", (e) => closeSearch()))
+        }
+    }
+
+    addEventTagList()
+
     const searchFnOnce = () => {
         $searchMask.addEventListener("click", closeSearch);
         utils.addEventListenerPjax(document.querySelector("#local-search .search-close-button"), "click", closeSearch);
@@ -37,11 +46,21 @@ window.onload = () => {
 
     const searchClickFn = () =>{
         utils.addEventListenerPjax(document.querySelector("#search-button > .search"), "click", openSearch);
+
+        GLOBAL_CONFIG.right_menu && document.getElementById("menu-search").addEventListener("click", function (){
+            rm.hideRightMenu();
+            openSearch();
+            let t=document.getElementsByClassName('search-box-input')[0];
+            let evt = document.createEvent('HTMLEvents');
+            evt.initEvent('input', true,true)
+            t.value = selectTextNow
+            t.dispatchEvent(evt)
+        })
     }
 
     searchClickFn();
 
-    function initLunr() {
+    function init() {
         fetch(GLOBAL_CONFIG.localsearch.path)
             .then(response => response.text())
             .then(data => {
@@ -59,16 +78,6 @@ window.onload = () => {
                         'content': content
                     });
                 }
-
-                idx = lunr(function () {
-                    this.ref('link');
-                    this.field('title', {boost: 10});
-                    this.field('content');
-
-                    store.forEach(function (doc) {
-                        this.add(doc);
-                    }, this);
-                });
             })
             .catch(err => console.error("Error loading search data:", err));
     }
@@ -169,7 +178,7 @@ window.onload = () => {
         }
         paginationContainer.appendChild(paginationList);
     }
-    initLunr();
+    init();
     initUI();
     window.addEventListener('DOMContentLoaded', (event) => {
         initUI();

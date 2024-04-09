@@ -30,6 +30,7 @@ const sidebarFn = () => {
         if (utils.isHidden($toggleMenu)) {
             if ($mobileSidebarMenus.classList.contains('open')) closeMobileSidebar()
         }
+        sco.refreshWaterFall();
     })
 }
 
@@ -53,8 +54,6 @@ const scrollFn = function () {
         } else {
             $header.classList.remove('nav-fixed', 'nav-visible');
         }
-
-        percent();
     }, 200));
 
     function scrollDirection(currentTop) {
@@ -62,38 +61,6 @@ const scrollFn = function () {
         initTop = currentTop;
         return result;
     }
-}
-
-const percent = () => {
-    let scrollTop = document.documentElement.scrollTop || window.pageYOffset
-    let totalHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight) - document.documentElement.clientHeight
-    let scrollPercent = Math.round(scrollTop / totalHeight * 100)
-    let percentElement = document.querySelector("#percent")
-    let viewportBottom = window.scrollY + document.documentElement.clientHeight
-    let remainingScroll = totalHeight - scrollTop
-
-    if ((document.getElementById("post-comment") || document.getElementById("footer")).offsetTop < viewportBottom || scrollPercent > 90) {
-        document.querySelector("#nav-totop").classList.add("long")
-        percentElement.innerHTML = GLOBAL_CONFIG.lang.backtop
-    } else {
-        document.querySelector("#nav-totop").classList.remove("long")
-        if (scrollPercent >= 0) {
-            percentElement.innerHTML = scrollPercent + ""
-        }
-    }
-
-    let elementsToHide = document.querySelectorAll(".needEndHide")
-    if (remainingScroll < 100) {
-        elementsToHide.forEach(function (element) {
-            element.classList.add("hide")
-        })
-    } else {
-        elementsToHide.forEach(function (element) {
-            element.classList.remove("hide")
-        })
-    }
-
-    window.onscroll = percent
 }
 
 
@@ -204,6 +171,7 @@ class toc {
 
 let lastSayHello = "";
 let wleelw_musicPlaying = false
+let right_menu = false
 
 let sco = {
     hideCookie: function () {
@@ -238,14 +206,17 @@ let sco = {
         const $music = document.querySelector('#nav-music');
         const $meting = document.querySelector('meting-js');
         const $console = document.getElementById('consoleMusic');
-        const $toggleButton = document.getElementById('menu-music-toggle');
+        const $rm_text = document.querySelector('#menu-music-toggle span');
+        const $rm_icon = document.querySelector('#menu-music-toggle i');
         wleelw_musicPlaying = !wleelw_musicPlaying;
         $music.classList.toggle("playing", wleelw_musicPlaying);
         $console.classList.toggle("on", wleelw_musicPlaying);
         if (wleelw_musicPlaying) {
             $meting.aplayer.play();
+            right_menu && ($rm_text.textContent = GLOBAL_CONFIG.right_menu.music.stop) && ($rm_icon.className = 'solitude st-pause-fill')
         } else {
             $meting.aplayer.pause();
+            right_menu && ($rm_text.textContent = GLOBAL_CONFIG.right_menu.music.start) && ($rm_icon.className = 'solitude st-play-fill')
         }
     },
     switchCommentBarrage: function () {
@@ -255,10 +226,12 @@ let sco = {
                 commentBarrageElement.style.display = "none";
                 document.querySelector("#consoleCommentBarrage").classList.remove("on");
                 localStorage.removeItem("commentBarrageSwitch");
+                right_menu && rm.barrage(true)
             } else {
                 commentBarrageElement.style.display = "flex";
                 document.querySelector("#consoleCommentBarrage").classList.add("on");
                 localStorage.setItem("commentBarrageSwitch", "false");
+                right_menu && rm.barrage(false)
             }
         }
     },
@@ -302,15 +275,16 @@ let sco = {
             document.documentElement.setAttribute('data-theme', 'dark')
             saveToLocal.set('theme', 'dark', 0.02);
             utils.snackbarShow(GLOBAL_CONFIG.lang.theme.dark, false, 2000)
+            right_menu && rm.mode(true)
         } else {
             document.documentElement.setAttribute('data-theme', 'light')
             saveToLocal.set('theme', 'light', 0.02);
             utils.snackbarShow(GLOBAL_CONFIG.lang.theme.light, false, 2000)
+            right_menu && rm.mode(false)
         }
     },
     hideTodayCard: () => document.getElementById('todayCard').classList.add('hide'),
     toTop: () => utils.scrollToDest(0),
-
     showConsole: function () {
         let el = document.getElementById('console')
         if (el && !el.classList.contains('show')) {
@@ -321,31 +295,32 @@ let sco = {
         const el = document.getElementById('console')
         el && el.classList.remove('show')
     },
-    reflashEssayWaterFall: function () {
-        const el = document.getElementById('waterfall')
-        el && (() => {
-            setTimeout(function () {
-                waterfall('#waterfall');
-                el.classList.add('show');
-            }, 500);
-        })();
+    refreshWaterFall: function () {
+        const els = document.querySelectorAll('.waterfall')
+        if (els.length !== 0) {
+            els.forEach(el => waterfall(el) || el.classList.add('show'))
+        }
     },
     addRuntime: function () {
         let el = document.getElementById('runtimeshow')
-        el && GLOBAL_CONFIG.runtime && (el.innerText = utils.timeDiff(new Date(GLOBAL_CONFIG.runtime), new Date()) + GLOBAL_CONFIG.lang.lately.day)
+        el && GLOBAL_CONFIG.runtime && (el.innerText = utils.timeDiff(new Date(GLOBAL_CONFIG.runtime), new Date()) + GLOBAL_CONFIG.lang.time.day)
     },
     toTalk: function (txt) {
-        const inputs = ["#wl-edit", ".el-textarea__inner"]
+        const inputs = ["#wl-edit", ".el-textarea__inner", "#veditor"]
         for (let i = 0; i < inputs.length; i++) {
             let el = document.querySelector(inputs[i])
             if (el != null) {
-                el.dispatchEvent(new Event('input', {bubble: true, cancelable: true}))
+                el.dispatchEvent(new Event('input', {
+                    bubble: true,
+                    cancelable: true
+                }))
                 el.value = '> ' + txt.replace(/\n/g, '\n> ') + '\n\n'
                 utils.scrollToDest(utils.getEleTop(document.getElementById('post-comment')), 300)
                 el.focus()
                 el.setSelectionRange(-1, -1)
             }
         }
+        utils.snackbarShow(GLOBAL_CONFIG.lang.totalk, !1, 2e3);
     },
     initbbtalk: function () {
         if (document.querySelector('#bber-talk')) {
@@ -383,12 +358,31 @@ let sco = {
             const timeNow = new Date();
             const hours = timeNow.getHours();
             const lang = GLOBAL_CONFIG.aside.sayhello;
-            const greetings = [
-                {start: 0, end: 5, text: lang.goodnight},
-                {start: 6, end: 10, text: lang.morning},
-                {start: 11, end: 14, text: lang.noon},
-                {start: 15, end: 18, text: lang.afternoon},
-                {start: 19, end: 24, text: lang.night},
+            const greetings = [{
+                start: 0,
+                end: 5,
+                text: lang.goodnight
+            },
+                {
+                    start: 6,
+                    end: 10,
+                    text: lang.morning
+                },
+                {
+                    start: 11,
+                    end: 14,
+                    text: lang.noon
+                },
+                {
+                    start: 15,
+                    end: 18,
+                    text: lang.afternoon
+                },
+                {
+                    start: 19,
+                    end: 24,
+                    text: lang.night
+                },
             ];
             for (let greeting of greetings) {
                 if (hours >= greeting.start && hours <= greeting.end) {
@@ -430,17 +424,13 @@ let sco = {
             categoryBarItems.forEach(item => {
                 item.classList.remove("select");
             });
-        }
-        if (decodedPath === "/") {
-            if (categoryBar) {
+            if (decodedPath === "/") {
                 const homeItem = document.getElementById("category-bar-home");
                 homeItem.classList.add("select");
-            }
-        } else {
-            if (/\/categories\/.*?\//.test(decodedPath)) {
-                let category = decodedPath.split("/").slice(-2, -1)[0];
-                category = category.charAt(0).toUpperCase() + category.slice(1);
-                if (categoryBar) {
+            } else {
+                if (/\/categories\/.*?\//.test(decodedPath)) {
+                    let category = decodedPath.split("/").slice(-2, -1)[0];
+                    category = category.charAt(0).toUpperCase() + category.slice(1);
                     const categoryItem = document.getElementById(category);
                     if (categoryItem) {
                         categoryItem.classList.add("select");
@@ -631,7 +621,14 @@ let sco = {
 
         document.addEventListener('mouseover', debounce(showOwoBig, 100));
         document.addEventListener('mouseout', hideOwoBig);
-    }
+    },
+    changeTimeFormat(selector) {
+        selector.forEach(item => {
+            const timeVal = item.getAttribute('datetime')
+            item.textContent = utils.diffDate(timeVal, true)
+            item.style.display = 'inline'
+        })
+    },
 }
 
 const addHighlight = () => {
@@ -722,7 +719,9 @@ const addHighlight = () => {
         $syntaxHighlight.forEach(item => {
             const langName = item.getAttribute('data-language') || 'Code'
             const highlightLangEle = `<div class="code-lang">${langName}</div>`
-            utils.wrap(item, 'figure', {class: 'highlight'})
+            utils.wrap(item, 'figure', {
+                class: 'highlight'
+            })
             createEle(highlightLangEle, item)
         })
     } else {
@@ -791,12 +790,21 @@ class tabs {
     }
 }
 
+sco.initAdjust()
+initObserver()
+addCopyright()
+sco.initConsoleState()
+
 window.refreshFn = () => {
-    sco.initAdjust()
+    document.body.setAttribute('data-type', PAGE_CONFIG.page)
+    if (PAGE_CONFIG.is_home || PAGE_CONFIG.is_page) {
+        sco.changeTimeFormat(document.querySelectorAll('#recent-posts time, .webinfo-item time'))
+        GLOBAL_CONFIG.runtime && sco.addRuntime()
+    } else {
+        sco.changeTimeFormat(document.querySelectorAll('#post-meta time'))
+    }
     scrollFn()
     sidebarFn()
-    initObserver()
-    sco.addRuntime()
     sco.hideCookie()
     sco.addPhotoFigcaption()
     sco.setTimeState()
@@ -804,19 +812,16 @@ window.refreshFn = () => {
     sco.categoriesBarActive()
     sco.listenToPageInputPress()
     sco.addNavBackgroundInit()
-    utils.changeTimeFormat()
+    sco.refreshWaterFall()
     GLOBAL_CONFIG.lazyload.enable && utils.lazyloadImg()
-    GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll("#article-container img:not(.flink-avatar)"))
+    GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll("#article-container img:not(.flink-avatar,.gallery-group img)"))
     GLOBAL_CONFIG.randomlink && randomLinksList()
     PAGE_CONFIG.comment && initComment()
     PAGE_CONFIG.toc && toc.init();
     (PAGE_CONFIG.is_post || PAGE_CONFIG.is_page) && ((addHighlight()) || tabs.init())
-    addCopyright()
     PAGE_CONFIG.is_home && showTodayCard()
     GLOBAL_CONFIG.covercolor.enable && coverColor()
-    sco.initConsoleState()
     GLOBAL_CONFIG.comment.commentBarrage && PAGE_CONFIG.comment && initializeCommentBarrage()
-    document.body.setAttribute('data-type', PAGE_CONFIG.page)
     PAGE_CONFIG.page === "music" && scoMusic.init()
     GLOBAL_CONFIG.post_ai && PAGE_CONFIG.page === "post" && efu_ai.init()
 }
@@ -830,4 +835,4 @@ window.onkeydown = function (e) {
     (27 === e.keyCode) && sco.hideConsole();
 }
 
-document.addEventListener('copy', () => utils.snackbarShow(GLOBAL_CONFIG.lang.copy.success,false,3e3))
+document.addEventListener('copy', () => utils.snackbarShow(GLOBAL_CONFIG.lang.copy.success, false, 3e3))

@@ -49,7 +49,12 @@ hexo.extend.filter.register('before_generate', () => {
             file: 'js/music.js',
             version
         },
-        translate:{
+        right_menu_js: {
+            name: 'hexo-theme-solitude',
+            file: 'js/right_menu.js',
+            version
+        },
+        translate_js:{
             name: 'hexo-theme-solitude',
             file: 'js/tw_cn.js',
             version
@@ -83,12 +88,7 @@ hexo.extend.filter.register('before_generate', () => {
             name: 'hexo-theme-solitude',
             file: 'js/third_party/universe.min.js',
             version
-        },
-        lately_js: {
-            name: 'hexo-theme-solitude',
-            file: 'js/third_party/lately.min.js',
-            version
-        },
+        }
     }
 
     const minFile = file => {

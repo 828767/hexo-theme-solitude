@@ -64,6 +64,7 @@ nav:
   right:
     random: false # 随机文章跳转 / random post button
     console: false #控制台 / console
+    top: false # 进度球 / Progress Ball
     # 自定义按钮
     # custom button
     # 左至右
@@ -138,6 +139,12 @@ hometop:
     # Shadow color
     color: "none"
 
+# carousel
+# 顶部推荐轮播图
+# 使用方法：在文章的front matter中添加“recommend: true”
+# tip：建议开了这个就不要开hometop，其功能类似
+carousel: false
+
 # --------------------------------------
 # Aside Settings
 # 侧边栏配置
@@ -164,6 +171,7 @@ aside:
   page:
     noSticky: "about"
     Sticky: "newestPost,allInfo"
+  position: 1 # left(0): 左侧 / right(1): 右侧
   # 侧边栏个人信息卡片
   # Sidebar personal information
   card:
@@ -503,8 +511,7 @@ music:
 # 音乐胶囊
 # capsule music
 capsule:
-  enable:
-    false
+  enable: false
   # 歌单id / playlist id
   id: 8407304077
   # 播放列表的服务商。netease：网易云 / tencent：腾讯 / kugou：酷狗 / xiami：小米 / baidu：百度
@@ -570,7 +577,7 @@ keyboard:
 copy:
   enable: true
   copyright: # Turn on Link copyright information after copying.（开启后将在默认增加版权信息）
-    enable: false
+    enable: true
     limit: 50 # word count. （字数）
 
 # 懒加载
@@ -620,7 +627,7 @@ fancybox: false
 # mediumZoom
 mediumZoom: false
 
-# mermaid
+# mermaid tags plugin
 # https://mermaid.js.org/
 mermaid: false
 
@@ -708,6 +715,7 @@ comment:
   commentBarrage: false # 热评开关 / Hot comment switch
   lazyload: true # 懒加载
   count: true # 评论数展示
+  avatar: https://cravatar.cn # Gravatar link
   newest_comment:
     enable: false
     storage: 421000 # 缓存时间
@@ -800,6 +808,40 @@ google_adsense:
   # Only when auto ads are turned off, you need to fill in the slot id, which can be obtained after creating an ad space in the Google Adsense background according to the ad unit
   slot: # 4236388782
 
+# 自定义右键菜单 (Custom Right Menu)
+right_menu:
+  enable: false
+  commentBarrage: false # 是否显示热评开关 / Whether to display the hot comment switch.
+  # 翻译功能（仅支持简繁）
+  # Translation function (Simplified and Traditional Chinese only)
+  translate: 
+    enable: false
+    defaultEncoding: 2 # 1: 默认繁体 2: 默认简体
+    translateDelay: 0 # 首次加载翻译迟疑时间
+  # 自定义菜单项列表
+  # Customize the list of menu items.
+  custom_list:
+  #  - name: 随机短文
+  #    click: toRandomPost()
+  #    id: menu-randomPost
+  #    class:
+  #    icon: st-signal-tower-fill
+  #  - name: 全部分类
+  #    click: pjax.loadUrl('/categories/') # 外链用 window.open，pjax 无法请求跨域内容
+  #    id:
+  #    class:
+  #    icon: st-checkbox-multiple-blank-fill
+  #  - name: 全部标签
+  #    click: pjax.loadUrl('/tags/')
+  #    id:
+  #    class:
+  #    icon: st-price-tag-fill
+  #  - name: 赞助主题
+  #    click: window.open('https://afdian.net/a/efu0u0/', '_blank')
+  #    id:
+  #    class:
+  #    icon: st-afdian-line
+
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要请不要修改
@@ -836,7 +878,6 @@ CDN:
     # aplayer_js:
     # meting_js:
     # pace_js:
-    # lunr_js:
     # swiper_css:
     # swiper_js:
     # busuanzi_js:

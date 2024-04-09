@@ -9,14 +9,20 @@
     margin-top: 0
 
   +minWidth900()
-    padding-left 15px
+    if hexo-config('aside.position') == 0
+      padding-right 15px
+    else
+      padding-left 15px
 
   +maxWidth1200()
     display none
 
   +minWidth1300()
-    padding-left 1rem
     animation slide-in .6s .3s backwards
+    if hexo-config('aside.position') == 0
+      padding-right 1rem
+    else
+      padding-left 1rem
 
   .item-headline
     padding-bottom 0

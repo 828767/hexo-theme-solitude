@@ -1,6 +1,8 @@
 more: More
 star: Behold, those who found delight in this piece also perused
 random: Around
+upload: 'datetime: '
+totalk: You don't need to delete blank lines, just type in your comments.
 
 theme:
   dark: dark
@@ -16,15 +18,12 @@ copy_copyright:
   source: Source
   info: Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
 
-lately:
-  second: ' second'
-  minute: ' minute'
-  hour: ' hour'
-  day: ' day'
-  month: ' month'
-  year: ' year'
-  ago: ' ago'
-  error: ' NaN'
+time:
+  day: " days ago"
+  hour: " hours ago"
+  just: "just"
+  min: " minutes ago"
+  month: " months ago"
 
 page:
   tag: Tags
@@ -145,3 +144,27 @@ commentBarrage:
   title: Hot
 
 f12: Developer mode is turned on, please follow the GPL.
+
+right_menu:
+  copy: Copy
+  paste: Paste
+  comment: ToTalk
+  new: Open
+  link: Copy
+  img: Copy
+  downloadImg: Download
+  search: Search
+  dark: Light
+  light: Dark
+  chs_to_cht: 轉為繁體
+  cht_to_chs: 转为简体
+  img_error: This image cannot be copied or downloaded.
+  barrage:
+    open: OpenBarrage
+    close: CloseBarrage
+  music:
+    start: Play
+    stop: Pause
+    back: Back
+    forward: Forward
+    copyMusicName: CopyName

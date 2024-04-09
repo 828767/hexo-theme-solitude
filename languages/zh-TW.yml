@@ -1,6 +1,8 @@
 more: 更多
 star: 喜歡這篇的人也看了
 random: 随便逛逛
+upload: 發佈時間：
+totalk: 無需刪除空行，直接輸入評論即可
 
 # Language: 繁體中文 (台灣)
 theme:
@@ -17,15 +19,12 @@ copy_copyright:
   source: 來源
   info: 著作權歸作者所有。 商業轉載請聯繫作者獲得授權，非商業轉載請註明出處。
 
-lately:
-  second: 秒
-  minute: 分鐘
-  hour: 小時
-  day: 天
-  month: 个月
-  year: 年
-  ago: 前
-  error: NaN
+time:
+  day: "天前"
+  hour: "小時前"
+  just: "剛剛"
+  min: "分鐘前"
+  month: "個月前"
 
 page:
   tag: 標籤
@@ -147,3 +146,27 @@ commentBarrage:
   title: 熱評
 
 f12: 開發者模式已打開，請遵循GPL協定。
+
+right_menu:
+  copy: 複製選中文本
+  paste: 粘貼文本
+  comment: 引用到評論
+  new: 新窗口打開
+  link: 複製連結位址
+  img: 複製此圖片
+  downloadImg: 下載此圖片
+  search: 站內搜索
+  dark: 淺色模式
+  light: 深色模式
+  chs_to_cht: 轉為繁體
+  cht_to_chs: 转为简体
+  img_error: 此圖片無法複製與下載
+  barrage:
+    open: 顯示熱評
+    close: 關閉熱評
+  music:
+    start: 播放音樂
+    stop: 暫停音樂
+    back: 切換到上一首
+    forward: 切換到下一首
+    copyMusicName: 複製歌名
