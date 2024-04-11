@@ -11,7 +11,7 @@ if recommends
                             a.blog-slider__title(onclick=`event.stopPropagation();`, href=item.path)=item.title
                             span.blog-slider__code
                                 =_p('upload')
-                                time(datetime=item.date)
+                                time(datetime=item.updated)
                             .blog-slider__text=item.description
             .swiper-button-next
             .swiper-button-prev
