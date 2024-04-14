@@ -1,0 +1,61 @@
+- const { server, site, option } = theme.artalk
+- const { lazyload, count ,use} = theme.comment
+
+script.
+    !function () {
+        let artalkItem = null
+        const initArtalk = () => {
+            artalkItem = Artalk.init({
+                el: '#artalk-wrap',
+                server: '!{server}',
+                site: "!{site}",
+                pageKey: location.pathname,
+                darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
+            }, !{JSON.stringify(option)})
+            if (GLOBAL_CONFIG.lightbox === 'null') return
+            artalkItem.on('list-loaded', () => {
+                const array = []
+                artalkItem.ctx.get('list').getCommentNodes().forEach(comment => {
+                    array.push({
+                        nick: comment.data.nick,
+                        content: comment.data.content_marked,
+                        mailMd5: comment.data.email_encrypted,
+                    })
+                    const $content = comment.getRender().$content
+                    utils.lightbox($content.querySelectorAll('img:not([atk-emoticon])'))
+                    sco.owoBig({body: '.atk-grp', item: '.atk-item'})
+                })
+                !{commentBarrage} && barrageArtalk(array)
+            })
+            const destroyArtalk = () => artalkItem.destroy()
+            utils.addGlobalFn('pjax', destroyArtalk, 'destroyArtalk')
+        }
+        const loadArtalk = async () => {
+            if (typeof Artalk === 'object') await initArtalk()
+            else {
+                await utils.getCSS('!{theme.cdn.artalk_css}')
+                await utils.getScript('!{theme.cdn.artalk_js}').then(initArtalk)
+            }
+        }
+        const artalkChangeMode = theme => {
+            const artalkWrap = document.getElementById('artalk-wrap')
+            if (!(artalkWrap && artalkWrap.children.length)) return
+            const isDark = theme === 'dark'
+            artalkItem.setDarkMode(!isDark)
+        }
+        utils.addGlobalFn('themeChange', artalkChangeMode, 'artalk')
+        if ('!{use[0]}' === 'Artalk' || !{lazyload}) {
+            if (!{lazyload}) utils.loadComment(document.getElementById('artalk-wrap'), loadArtalk)
+            else loadArtalk()
+        } else {
+            window.loadTwoComment = loadArtalk
+        }
+    }()
+
+if commentBarrage
+    script.
+        const barrageArtalk = async array => {
+            await utils.getScript('!{url_for(theme.cdn.commentBarrage)}').then(() => {
+                initializeCommentBarrage(array)
+            })
+        }

@@ -1,8 +1,10 @@
-if theme.comment.enable && theme.console_plus && theme.comment.newest_comment.enable
-    case theme.comment.type
-        when 'twikoo'
-            !=partial('includes/widgets/third-party/news-comment/twikoo',{}, {cache: true})
-        when 'waline'
-            !=partial('includes/widgets/third-party/news-comment/waline',{}, {cache: true})
-        when 'valine'
-            !=partial('includes/widgets/third-party/news-comment/valine',{}, {cache: true})
+if theme.comment.use && theme.console_plus && theme.comment.newest_comment.enable
+    case theme.comment.use[0]
+        when 'Twikoo'
+            !=partial('includes/widgets/third-party/news-comment/twikoo', {}, {cache: true})
+        when 'Waline'
+            !=partial('includes/widgets/third-party/news-comment/waline', {}, {cache: true})
+        when 'Valine'
+            !=partial('includes/widgets/third-party/news-comment/valine', {}, {cache: true})
+        when 'Artalk'
+            !=partial('includes/widgets/third-party/news-comment/artalk', {}, {cache: true})

@@ -26,38 +26,10 @@
 
     let comment = false
 
-    if (theme.comment.enable) {
+    if (theme.comment.use) {
         comment = {
             avatar: theme.comment.avatar,
             commentBarrage: theme.comment.commentBarrage,
-        }
-        switch (theme.comment.type) {
-            case "twikoo":
-                comment.url = theme.comment.twikoo.envId
-                comment.accessToken = theme.comment.twikoo.accessToken
-                comment.owo = {
-                    body: '.OwO-body',
-                    item: '.OwO-items li'
-                }
-                break
-            case "waline":
-                comment.url = theme.comment.waline.envId
-                comment.owo = {
-                    body: '.wl-emoji-popup',
-                    item: '.wl-tab-wrapper button'
-                }
-                break
-            case "valine":
-                comment.url = theme.comment.valine.serverURLs
-                comment.appId = theme.comment.valine.appId
-                comment.appKey = theme.comment.valine.appKey
-                comment.owo = {
-                    body: '.vwrap',
-                    item: '.vemojis i'
-                }
-                break
-            default:
-                break
         }
     }
 
@@ -113,7 +85,7 @@
         }
     }
 
-    if (theme.comment.enable && theme.comment.commentBarrage) {
+    if (theme.comment.use && theme.comment.commentBarrage) {
         lang.barrage = {
             title: _p('commentBarrage.title'),
         }
@@ -134,7 +106,7 @@
                 stop: _p('right_menu.music.stop'),
             }
         }
-        if (theme.comment.enable && theme.comment.commentBarrage) {
+        if (theme.comment.use && theme.comment.commentBarrage) {
             rightMenu.barrage = {
                 open: _p('right_menu.barrage.open'),
                 close: _p('right_menu.barrage.close')

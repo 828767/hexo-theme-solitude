@@ -4,9 +4,12 @@ script.
             if (content === '') return content;
 
             const replacements = [
-                {regex: /<img.*?src="(.*?)"?[^\>]+>/ig, replacement: '<i class="solitude st-image-fill"></i>'},
-                {regex: /<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, replacement: '<i class="solitude st-link"></i>'},
-                {regex: /```[\s\S]*?```/g, replacement: '<i class="solitude st-code-box-fill"></i>'},
+                {regex: /<img.*?src="(.*?)"?[^\>]+>/ig, replacement: '[!{_p("console.newest_comment.image")}]'},
+                {
+                    regex: /<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi,
+                    replacement: '[!{_p("console.newest_comment.link")}]'
+                },
+                {regex: /```[\s\S]*?```/g, replacement: '[!{_p("console.newest_comment.code")}]'},
                 {regex: /<[^>]+>/g, replacement: ""}
             ];
 
@@ -17,7 +20,7 @@ script.
 
         const $asideList = document.querySelector('#card-newest-comments .aside-list')
         const newestCommentInit = () => {
-            const data = saveToLocal.get('valine-newest-comment')
+            const data = utils.saveToLocal.get('valine-newest-comment')
             if (data) {
                 generateHtml(data)
             } else {
@@ -26,17 +29,16 @@ script.
         }
 
         const getComment = async () => {
-            try {
-                const settings = {
-                    "method": "GET",
-                    "headers": {
-                        "X-LC-Id": '!{theme.comment.valine.appId}',
-                        "X-LC-Key": '!{theme.comment.valine.appKey}',
-                        "Content-Type": "application/json"
-                    },
-                }
-
-                const res = await fetch('!{theme.comment.valine.serverURLs}/1.1/classes/Comment?limit=8&order=-createdAt', settings)
+            const settings = {
+                "method": "GET",
+                "headers": {
+                    "X-LC-Id": '!{theme.valine.appId}',
+                    "X-LC-Key": '!{theme.valine.appKey}',
+                    "Content-Type": "application/json"
+                },
+            }
+            if (typeof md5 === "undefined") await utils.getScript('!{url_for(theme.cdn.blueimp_md5)}')
+            await fetch('!{theme.valine.serverURLs}/1.1/classes/Comment?limit=8&order=-createdAt', settings).then(async res => {
                 const result = await res.json()
                 window.res = result
                 const valineArray = result.results.map(e => {
@@ -48,12 +50,12 @@ script.
                         'date': e.updatedAt || e.createdAt
                     }
                 })
-                saveToLocal.set('valine-newest-comment', valineArray, !{theme.comment.newest_comment.storage})
+                utils.saveToLocal.set('valine-newest-comment', valineArray, !{theme.comment.newest_comment.storage})
                 generateHtml(valineArray)
-            } catch (err) {
-                console.error(err)
+            }).catch(error => {
+                console.error(error);
                 $asideList.textContent = "!{_p('newest_comment.error')}"
-            }
+            })
         }
 
         const generateHtml = array => {
