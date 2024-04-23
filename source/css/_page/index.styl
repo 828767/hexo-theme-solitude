@@ -6,9 +6,6 @@
 
 @import "error.styl"
 
-if hexo-config('moments.enable')
-  @import "moment.styl"
-
 if hexo-config('says.enable')
   @import "says.styl"
 
@@ -65,3 +62,7 @@ if $about
   .needEndHide.hide
     bottom -200px !important
     opacity 0
+
++maxWidth768()
+  .needEndHide
+    display none!important

@@ -174,6 +174,7 @@ aside:
   # 侧边栏个人信息卡片
   # Sidebar personal information
   card:
+    style: 0 # 0: Heo样式 ：1: 设计样式
     # 头像信息
     # Avatar information
     author:
@@ -353,9 +354,14 @@ post:
     title: 感谢您的赞赏。
     desc: 因为有你们的支持，我才体会到写文章的价值。
     list:
-    #  - name: 支付宝
-    #    qcode: https://7.isyangs.cn/34/65f2e5a6d2ef5-34.png
-    #    color: var(--efu-blue)
+    #  - name: 爱发电
+    #    qcode: https://s3.qjqq.cn/47/661ba8e695f17.webp!color
+    #    url: https://afdian.net/a/efu0u0/
+    #    color: var(--efu-purple)
+    #  - name: Github Sponsor
+    #    qcode: https://s3.qjqq.cn/47/661ba900c4bc1.webp!color
+    #    url: https://github.com/sponsors/efuo
+    #    color: var(--efu-black)
   # 版权中订阅按钮跳转链接，填写地址后开启
   # Subscription button jump link in copyright
   rss: # /atom.xml
@@ -524,31 +530,6 @@ capsule:
   # Type of playlist. song: Single / playlist: Playlist / album: Album / artist: Singer
   type: playlist
 
-# 友链鱼塘
-# Links fish pond
-moments:
-  # enable
-  enable: false
-  # API 地址
-  # example: https://example.com/
-  api: # https://example.com/
-  # 加载失败显示图片 / Loading failed display image
-  error_img: /img/pwa/favicon_64.ico
-  # 排序规则：created：按创建时间排序 / updated：按更新时间排序
-  # Sort rule: created: Sort by creation time / updated: Sort by update time
-  sort_rule: created
-  # 缓存过期时间（天），默认为1天 / Cache expiration time (days), default is 1 day
-  expire_days: 1
-  # 页面初始化加载数量，默认为10条 / Page initialization loading quantity, default is 10
-  page_init_number: 10
-  # 页面翻页加载数量，默认为5条 / Page turning loading quantity, default is 5
-  page_turning_number: 5
-  # 鱼塘随机文章 / Fish pond random article
-  angle: false
-  appjs: https://cdn.cbd.int/st-source@1.0.3/js/fcircle.min.js
-  bundlejs: https://cdn.cbd.int/st-source/js/moment/bundle.min.js
-  randompostjs: https://cdn.cbd.int/st-source/js/moment/random_post.min.js
-
 # 快捷菜单你
 # quick menu
 keyboard:
@@ -657,6 +638,7 @@ wordcount: false
 # 访问统计
 # access statistics
 busuanzi: false
+busuanzi_use: 0 # 0: 原版 / 1: 青秸(other: 其它自定義的busuanzi平台)
 
 # 搜索
 # search
@@ -678,6 +660,23 @@ search:
     preload: false
     CDN:
 
+# Post Chat AI
+# 后台地址：https://ai.tianli0.top/?InviteID=OZ3Z0V2R
+tianli_talk:
+  enable: false
+  title: 智能客服与搜索
+  key: # https://ai.tianli0.top/?InviteID=OZ3Z0V2R
+  # 默认值
+  # backgroundColor: "var(--efu-main)",
+  # bottom: "60px",
+  option: #https://ai.tianli0.top/codeMaker.html
+  #  defaultInput: false
+  #  upLoadWeb: true
+  #  userTitle: Efu Chat
+  #  userDesc: 你好，我是 Efu 的智能客服，有什么可以帮助你的？
+  #  showInviteLink: 'https://ai.tianli0.top/?InviteID=OZ3Z0V2R'
+  #  blackDom:
+  #    - .aplayer
 # 文章摘要AI
 # post abstract AI
 post_ai:

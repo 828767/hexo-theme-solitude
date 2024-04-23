@@ -65,6 +65,9 @@ post:
     reprint: 本文是转载或翻译文章，版权归原作者所有。转载本文请联系原作者。
     original: 本文是原创文章，采用
     original_end: 协议，完整转载请注明来自
+  ai:
+    title: 文章摘要
+    tip: 投诉
 
 award:
   thanks: 致谢
@@ -92,6 +95,10 @@ aside:
   avatar: 头像
   sticker: 心情贴纸
   newpost: 最近发布
+  card:
+    posts: '累计文章数:'
+    tags: '标签总数:'
+    categories: '分类总数:'
 
 console:
   comment_tip: 互动
@@ -174,6 +181,11 @@ right_menu:
     back: 切换到上一首
     forward: 切换到下一首
     copyMusicName: 复制歌名
+
+pagination:
+  prev: 上一页
+  next: 下一页
+  to: 跳转到指定页面
 
 about:
   other:
