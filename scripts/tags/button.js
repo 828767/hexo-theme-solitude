@@ -4,7 +4,7 @@
  * option: color outline center block larger
  * color : default/blue/pink/red/purple/orange/green
  */
-
+ 
 "use strict";
 
 const urlFor = require("hexo-util").url_for.bind(hexo);
@@ -21,7 +21,7 @@ function btn(args) {
     icon = icon.trim();
     option = option.trim();
 
-    return `<button class="btn-sco ${option}" onclick="window.open('${urlFor(url)}')" 
+    return `<button class="btn-sco ${option}" onclick="${url.startsWith("http") ? `window.open('${url}')` : `pjax.loadUrl('${urlFor(url)}')`}" 
   title="${text}">${icon.length ? `<i class="solitude ${icon}"></i>` : ""}${text.length ? `<span>${text}</span>` : ""}</button>`;
 }
 

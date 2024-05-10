@@ -1,40 +1,40 @@
 const urlFor = require("hexo-util").url_for.bind(hexo);
 function link(args) {
-  const themeConfig = hexo.theme.config;
-  args = args.join(" ").split(",");
-  let title = args[0];
-  let sitename = args[1];
-  let link = args[2];
-  let imgUrl = args[3] || "";
-  let favicon = themeConfig.site.siteIcon;
+    const themeConfig = hexo.theme.config;
+    args = args.join(" ").split(",");
+    let title = args[0];
+    let sitename = args[1];
+    let link = args[2];
+    let imgUrl = args[3] || "";
+    let favicon = themeConfig.site.siteIcon;
 
   // 删除头尾空白符
-  link = link.trim();
-  imgUrl = imgUrl.trim();
-  favicon = favicon.trim();
+    link = link.trim();
+    imgUrl = imgUrl.trim();
+    favicon = favicon.trim();
 
   // 链接指定为有效URL视为站外，其他相对路径等视为站内
-  try {
-    new URL(link);
-    InsideStation = false;
-  } catch (err) {
-    InsideStation = true;
-  }
-
-  if ((imgUrl == "") && (InsideStation == false)) {
-    let domain = new URL(link).hostname;
-    if (domain) {
-      imgUrl_online = "https://api.iowen.cn/favicon/" + domain + ".png";
+    try {
+        new URL(link);
+        insideStation = false;
+    } catch (err) {
+        insideStation = true;
     }
-  }
 
-  return `<a class="tag-link" target="_blank" href="${urlFor(link)}">
+    if ((imgUrl === "") && (insideStation === false)) {
+        let domain = new URL(link).hostname;
+        if (domain) {
+            imgUrl_online = "https://api.iowen.cn/favicon/" + domain + ".png";
+        }
+    }
+
+    return `<a class="tag-link" target="_blank" href="${urlFor(link)}">
     <div class="tag-link-tips">${
-      InsideStation ? "站内链接" : "引用站外链接"
+      insideStation ? "站内链接" : "引用站外链接"
     }</div>
     <div class="tag-link-bottom">
         <div class="tag-link-left" style="${
-          InsideStation
+          insideStation
             ? `background-image: url(${imgUrl ? imgUrl : favicon})`
             : `background-image: url(${imgUrl ? imgUrl : imgUrl_online})`
         }">
