@@ -60,7 +60,7 @@
 - [x] 双评论
 - [x] 相册
 
-> 如有問題請提 [issue](https://github.com/valor-x/hexo-theme-solitude/issues)
+> 如有问题请提 [issue](https://github.com/valor-x/hexo-theme-solitude/issues)
 
 ## 应用
 

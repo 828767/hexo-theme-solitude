@@ -591,6 +591,147 @@ if hexo-config('aside.card.style') == 1
               font-size: 1em
               line-height: 1.5
 
+if hexo-config('aside.card.style') == 2
+  #aside-content .card-widget.card-info
+    padding 0
+
+  .card-info-bg-top
+    width 100%
+    height 95px
+    position relative
+    background: linear-gradient(-25deg, var(--efu-main), var(--efu-main-op-deep), var(--efu-main), var(--efu-main-op-deep))
+    if hexo-config('aside.card.background')
+      background-image url(hexo-config('aside.card.background'))
+      background-size cover
+      background-position center
+      background-repeat no-repeat
+  .author-info__name
+    font-size 24px
+    line-height 35px
+    color var(--efu-white)
+    font-weight 700
+    position absolute
+    top 55px
+    if hexo-config('aside.position') == 0
+      left 6rem
+    else
+      left 1rem
+  .card-info__data
+    position absolute
+    top 98px
+    gap .5rem
+    z-index 1
+    if hexo-config('aside.position') == 0
+        right 1rem
+      else
+        left 1rem
+
+    .headline
+      color var(--efu-gray)
+
+    .length-num
+      font-weight 700
+
+    a
+      font-size 14px
+      display flex
+      line-height 18px
+      gap .1rem
+  .card-info__desc_group
+    padding 44px 1rem 1rem
+    min-height 50px
+    opacity .8
+    line-height 18px
+  .author-info-social
+    position absolute
+    display inline-flex
+    gap: 5px
+    top .5rem
+    if hexo-config('aside.position') == 0
+      right 1rem
+    else
+      left 1rem
+
+    i
+      font-size 18px
+      width 30px
+      height 30px
+      border-radius 50%
+      background rgba(255, 255, 255, .2)
+      backdrop-filter blur(10px)
+      color var(--efu-white)
+      display flex
+      justify-content center
+      align-items center
+
+  .social-icons
+    order 1
+    opacity 0
+    transition .3s
+    display flex
+    pointer-events none
+    gap 5px
+  .more-info
+    if hexo-config('aside.position') == 0
+      order 1
+    else
+      order 0
+    cursor pointer
+    display flex
+    justify-content center
+    align-items center
+  .card-info-avatar
+    width 80px
+    height 80px
+    top 50px
+    border-radius 500px
+    position absolute
+    transition cubic-bezier(.69, .39, 0, 1.21) .3s
+    transform-origin bottom
+    border 3px solid var(--efu-card-bg)
+    z-index 1
+    if hexo-config('aside.position') == 0
+      left 1rem
+    else
+      right 1rem
+
+    .avatar-img
+      overflow hidden
+      border-radius 500px
+      width 74px
+      cursor pointer
+      height 74px
+
+      img
+        object-fit cover
+        width 100%
+        height 100%
+        transition .3s
+
+        &:hover
+          transform: scale(1.3)
+
+    if hexo-config('aside.card.author.sticker')
+      .avatar-sticker
+        position absolute
+        bottom -2px
+        right -2px
+        width 26px
+        height 26px
+        line-height 26px
+        z-index 0
+        display flex
+        align-items center
+        justify-content center
+        transition .3s .2s
+        transform scale(1)
+        background var(--efu-card-bg)
+        border-radius 50%
+
+        img
+          width 21px
+          height 21px
+
 [data-theme=dark] #aside-content
   > .card-widget.card-info
     border var(--style-border-always)
