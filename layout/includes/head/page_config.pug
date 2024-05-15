@@ -5,6 +5,6 @@ script#config-diff.
         is_home: !{is_home()},
         page: '!{page.type}',
         toc: !{!!page.toc},
-        comment: !{!!page.comment},
+        comment: !{!!page.comments},
         ai_text: !{is_post && page.ai_text ? "'"+ page.ai_text+"'" : false}
     }

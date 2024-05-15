@@ -41,7 +41,7 @@ block content
                 include includes/widgets/post/postNav
             if theme.related_post.enable
                 != related_posts(page, site.posts)
-            if page.comment
+            if page.comments
                 - var comment_js = true
                 include includes/widgets/third-party/comments/comment
         include includes/widgets/aside/aside

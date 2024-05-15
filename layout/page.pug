@@ -30,7 +30,7 @@ block content
                         != page.content
                 default
                     include includes/page/default
-            if page.comment
+            if page.comments
                 - var comment_js = true
                 include includes/widgets/third-party/comments/comment
         if page.aside
