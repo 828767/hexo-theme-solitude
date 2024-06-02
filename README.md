@@ -15,6 +15,7 @@
 ![license](https://img.shields.io/github/license/valor-x/hexo-theme-solitude?color=FF5531)
 [![Stars](https://img.shields.io/github/stars/valor-x/hexo-theme-solitude)](https://github.com/valor-x/hexo-theme-solitude/stargazers)
 [![NPM all downloads](https://img.shields.io/npm/dy/hexo-theme-solitude?color=white)](https://www.npmjs.com/package/hexo-theme-solitude)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude?ref=badge_shield)
 
 ![hexo version](https://img.shields.io/badge/hexo-7.0.0+-blue?logo=hexo&logoColor=white)
 ![node version](https://img.shields.io/badge/node-14.0.0-white?logo=node.js&logoColor=white)
@@ -38,7 +39,7 @@
 [![gitee](https://img.shields.io/badge/Gitee-red?logo=gitee)](https://gitee.com/nsjjd_w/hexo-theme-solitude)
 [![gitlab](https://img.shields.io/badge/GitLab-blue?logo=gitlab)](https://gitlab.com/efu/hexo-theme-solitude)
 
-[预览](https://www.efu.me/) 丨  [文档](https://docs.efu.me/)
+[文档](https://solitude.js.org/)丨[预览](https://www.efu.me/)
 
 </div>
 
@@ -59,6 +60,8 @@
 - [x] Artalk 评论
 - [x] 双评论
 - [x] 相册
+- [x] 弹幕留言页
+- [x] 首页顶部新样式 
 
 > 如有问题请提 [issue](https://github.com/valor-x/hexo-theme-solitude/issues)
 
@@ -85,4 +88,6 @@
 
 ## 版权
 
-[MIT](./LICENSE) License &copy; 2023-至今 [Efu](https://github.com/efuo)
+[MIT](./LICENSE) License &copy; 2023-至今 [EverFu](https://github.com/efuo)
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude?ref=badge_large)

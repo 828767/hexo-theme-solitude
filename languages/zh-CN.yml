@@ -4,6 +4,7 @@ random: 随便逛逛
 upload: 发布时间：
 totalk: 无需删除空行，直接输入评论即可
 loading: 加载中...
+day: ' 天'
 
 # Language: 简体中文
 theme:
@@ -94,6 +95,8 @@ aside:
   toc: 文章目录
   tagmore: 查看全部
   avatar: 头像
+  hello: 好久不见，
+  back: 欢迎再次回来，
   sticker: 心情贴纸
   newpost: 最近发布
   card:
