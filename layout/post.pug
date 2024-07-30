@@ -3,9 +3,12 @@ extends includes/layout.pug
 block content
     main.layout#content-inner
         #post
-            if theme.post_ai.enable && page.ai
-                include includes/widgets/post/post-ai
-            article.post-content#article-container!= page.content
+            if page.not_cover
+                include includes/widgets/post/postInfo
+            article.post-content#article-container
+                if theme.post_ai.enable && page.ai
+                    include includes/widgets/post/post-ai
+                != page.content
             include includes/widgets/post/copyright
             .post-tools-right
                 .tag_share
@@ -13,8 +16,9 @@ block content
                         each data in page.tags.data
                             a(href=url_for(data.path)).post-meta__tags
                                 span.tags-punctuation
-                                | #{data.name}
-                                span.tagsPageCount #{data.length}
+                                    i.solitude.fa-solid.fa-hashtag
+                                    =data.name
+                                    span.tagsPageCount=data.length
             if theme.google_adsense.enable && !theme.google_adsense.auto_ads && theme.google_adsense.post_content
                 div.google-ads-warp
                     ins.adsbygoogle(style="display:block; text-align:center; height:284px", data-ad-layout="in-article", data-ad-format="fluid", hide-unfilled="true", data-ad-client=theme.google_adsense.client, data-ad-slot=theme.google_adsense.slot)
