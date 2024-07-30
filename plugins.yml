@@ -5,7 +5,7 @@ algolia_search:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.73.0
+  version: 4.73.2
 pjax:
   name: pjax
   file: pjax.min.js
@@ -13,21 +13,21 @@ pjax:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.36
+  version: 1.6.38
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 3.2.7
+  version: 3.3.0
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
-  version: 3.2.7
+  version: 3.3.0
   other_name: waline
 valine:
   name: valine
   file: dist/Valine.min.js
-  version: 1.5.1
+  version: 1.5.2
 artalk_css:
   name: artalk
   file: dist/Artalk.css
@@ -89,10 +89,10 @@ snackbar:
   name: node-snackbar
   file: dist/snackbar.min.js
   version: 0.1.16
-solitude_css:
-  name: solitude-source
-  file: icon/solitude.min.css
-  version: 1.0.5
+fontawesome:
+  name: font-awesome
+  file: css/all.min.css
+  version: 6.6.0
 medium_zoom:
   name: medium-zoom
   file: dist/medium-zoom.min.js

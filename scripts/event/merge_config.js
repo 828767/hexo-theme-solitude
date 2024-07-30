@@ -13,7 +13,6 @@ hexo.extend.filter.register('before_generate', () => {
             menu: null,
             right: {
                 random: false,
-                console: false,
                 custom: [],
             }
         },
@@ -113,12 +112,14 @@ hexo.extend.filter.register('before_generate', () => {
             error: true,
             tags: true,
             categories: true,
+            archives: 0,
             default: {
                 cover: ['/img/default.avif'],
             }
         },
         post: {
             default: {
+                top_cover: true,
                 cover: ['/img/default.avif'],
                 locate: 'China, Changsha',
                 copyright: {
@@ -150,6 +151,10 @@ hexo.extend.filter.register('before_generate', () => {
                 mode: 'local',
                 api: 'https://api.qjqq.cn/api/Imgcolor?img=',
                 time: 43200000,
+            },
+            share: {
+              enable: false,
+              list: []
             },
             footer: {
                 enable: true,
@@ -306,6 +311,10 @@ hexo.extend.filter.register('before_generate', () => {
             lazyload: false,
             count: false,
             avatar: 'https://cravatar.cn',
+            hot_tip: {
+                enable: true,
+                count: 3
+            }
         },
         twikoo: {
             envId: 'your envId',
@@ -332,6 +341,17 @@ hexo.extend.filter.register('before_generate', () => {
             server: 'your server',
             site: 'your site-name',
             option: null,
+        },
+        console: {
+            enable: false,
+            recentComment: {
+                enable: false,
+                storage: .2,
+            },
+            card: {
+                tags: true,
+                archive: true
+            }
         },
         verify_site: [],
         css_prefix: false,
@@ -375,6 +395,24 @@ hexo.extend.filter.register('before_generate', () => {
                 translateDelay: 0,
             },
             custom_list: []
+        },
+        lure: {
+            enable: false,
+            jump: '404 Not Found',
+            back: 'ヾ(≧∇≦*)ゝ嘿嘿，上当了吧'
+        },
+        expire: {
+            enable: false,
+            time: 30,
+            position: 'top',
+            text_prev: '本文已于',
+            text_next: '天前过期，如果内容不符，请联系站长更新。',
+        },
+        background: {
+            enable: false,
+            dark: 'https://bu.dusays.com/2023/09/29/651685ce667d1.jpg',
+            light: 'https://bu.dusays.com/2023/09/29/651685cc18d39.jpg',
+            opacity: .2,
         },
         CDN: {
             internal: 'local',

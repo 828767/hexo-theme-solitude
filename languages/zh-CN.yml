@@ -5,6 +5,7 @@ upload: 发布时间：
 totalk: 无需删除空行，直接输入评论即可
 loading: 加载中...
 day: ' 天'
+hot-tip: 多人互动
 
 # Language: 简体中文
 theme:
@@ -45,12 +46,13 @@ nav:
   console: 中控台
 
 home:
-  home: 首页
+  home: 推荐
   sticky: 置顶
   new: 最新
   read: 未读
   recommend: 荐
   recommendmore: 更多推荐
+  archives: 全部文章
 
 post:
   reprint: 转载或翻译

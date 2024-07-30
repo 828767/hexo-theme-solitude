@@ -1,11 +1,10 @@
 #category-bar
-  padding 0.4rem 1rem 0.4rem 0.7rem
+  padding .4rem .7rem
   background var(--efu-card-bg)
   border-radius 12px
   display flex
   white-space nowrap
   overflow hidden
-  margin-bottom 1rem
   border var(--style-border)
   transition 0.3s
   height 50px
@@ -13,33 +12,50 @@
   justify-content space-between
   user-select none
   align-items center
-
-  +maxWidth1300()
-    margin-bottom 1rem
-    animation slide-in .6s 0s backwards
+  margin-bottom .5rem
 
   +minWidth1300()
-    margin-bottom .75rem
     &:hover
       border var(--style-border-hover)
       box-shadow var(--efu-shadow-main)
 
+  +minWidth1200()
+    animation: slide-in .6s .3s backwards;
+
   +maxWidth768()
-    margin-bottom 0
-    margin-top 0
+    margin-bottom .5rem
+    margin-top .5rem
     border-radius 0
     background var(--efu-background)
-    padding 0.5rem 0
+    padding 0 1rem
     border none
 
   .category-bar-right
     display flex
+    align-items center
 
-  .category-bar-more
-    margin-left 14px
-    font-weight 700
+    +maxWidth768()
+      display none
 
-    &:hover
+    .category-bar-next
+      margin-left 8px
+      cursor pointer
+      height 30px
+      width 30px
+      display flex
+      border-radius 8px
+      align-items center
+      justify-content center
+      transition .3s
+
+    .category-bar-more
+      margin-left 4px
+      font-weight 700
+      border-radius 8px
+      padding 0 8px
+
+    div:hover, a:hover
+      background var(--efu-secondbg-bg)
       color var(--efu-lighttext)
 
   .category-bar-items
@@ -50,15 +66,17 @@
     border-radius 8px
     align-items center
     height 30px
+    +maxWidth768()
+      height 44px
+      gap 6px
 
     &::-webkit-scrollbar
       display: none
 
     .category-bar-item
-      &:hover
-        a
-          background var(--efu-theme)
-          color var(--efu-white)
+      a:hover
+        background var(--efu-main)
+        color var(--efu-white)
 
       a
         padding .1rem .5rem
@@ -69,24 +87,15 @@
         align-items center
         height 30px
 
+        +maxWidth768()
+          border-radius 50px
+          background var(--efu-card-bg)
+          border var(--style-border-always)
+          padding 21px 16px
+
       &.select
         order -1
 
         a
           background var(--efu-theme)
           color var(--efu-white)
-
-.category-bar-next
-    margin-left 8px
-    cursor pointer
-    height 30px
-    width 30px
-    display flex
-    border-radius 8px
-    align-items center
-    justify-content center
-    transition .3s
-@media (hover: hover) 
-  .category-bar-next:hover 
-    backgroundvar(--efu-secondbg)
-    color var(--efu-lighttext)

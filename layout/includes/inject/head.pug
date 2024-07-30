@@ -2,10 +2,10 @@ each item in theme.verify_site || []
     meta(name=item.name, content=item.content)
 
 link(rel="canonical" href=urlNoIndex())
-link(rel="stylesheet", href=url_for(theme.cdn.solitude_css))
+link(rel="stylesheet", href=url_for(theme.cdn.fontawesome))
 
 // aplayer
-if theme.capsule.enable || theme.music.enable || theme.says.enable
+if theme.capsule.enable || theme.music.enable
     link(rel="stylesheet", href=url_for(theme.cdn.aplayer_css))
 
 // swiper
